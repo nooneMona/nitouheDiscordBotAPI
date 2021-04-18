@@ -12,7 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
+      - name: Build Application
+        run: |
+          yarn
+          yarn build
       - name: Deploy an App Engine app
         id: deploy-app
         uses: google-github-actions/deploy-appengine@v0.3.1
