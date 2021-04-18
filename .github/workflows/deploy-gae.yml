@@ -1,0 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy GAE
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Google App Engine
+        uses: claudiuri/deploy-gae-action@master
+        with:
+          service-account:  ${{ secrets.SERVICE_ACCOUNT }}
+          project-id: ${{ secrets.PROJECT_ID }}
+
