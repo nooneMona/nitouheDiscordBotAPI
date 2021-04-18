@@ -12,9 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy to Google App Engine
-        uses: claudiuri/deploy-gae-action@master
-        with:
-          service-account:  ${{ secrets.SERVICE_ACCOUNT }}
-          project-id: ${{ secrets.PROJECT_ID }}
 
+      - name: Deploy an App Engine app
+        id: deploy-app
+        uses: google-github-actions/deploy-appengine@v0.3.1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          deliverables: app.yaml
+          credentials: ${{ secrets.GCP_SA_KEY }}
+          version: v1
